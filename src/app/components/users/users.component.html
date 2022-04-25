@@ -1,0 +1,31 @@
+<table class="table container" *ngIf="users">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Roles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td class="align-bottom">{{ user.id }}</td>
+      <td class="align-bottom">{{ user.username }}</td>
+      <td class="align-bottom">{{ user.email }}</td>
+      <td class="align-bottom">
+        <span *ngFor="let item of user.roles">{{ item.roleName }}</span>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <mat-paginator
+        [length]="items.totalElements"
+        [pageSize]="20"
+        (page)="onPageChanged($event)"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </tr>
+  </tfoot>
+</table>

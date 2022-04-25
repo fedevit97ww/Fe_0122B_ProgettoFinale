@@ -1,0 +1,71 @@
+
+  <mat-card class="container">
+    <mat-card-title>Nuovo Comune</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+        <mat-label>Nome</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="nome"
+          required
+          oninput="this.value = this.value.toUpperCase()"
+          class="form-control"
+        />
+        <div
+        *ngIf="
+          form.controls['nome'].invalid &&
+          (form.controls['nome'].dirty ||
+            form.controls['nome'].touched)
+        "
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls['nome'].errors"
+          >Campo Obbligatorio</span
+        >
+      </div>
+
+        <div formGroupName="provincia">
+          <mat-label>Provincia</mat-label>
+          <select class="form-select" id="provincia" *ngIf="province" formControlName="id">
+            <option value=""></option>
+            <option *ngFor="let x of province" [value]="x.id">
+              {{ x.nome }}
+            </option>
+          </select>
+          <div
+          *ngIf="
+            form.controls['provincia'].invalid &&
+            (form.controls['provincia'].dirty ||
+              form.controls['provincia'].touched)
+          "
+          class="alert alert-danger"
+        >
+          <span *ngIf="form.controls['provincia'].errors"
+            >Campo Obbligatorio</span
+          >
+        </div>
+        </div>
+
+
+
+        <mat-card-actions>
+          <div class="center">
+            <button
+              mat-raised-button
+              color="accent"
+              type="button"
+              (click)="back()"
+            >
+              Indietro
+            </button>
+
+            <button mat-raised-button color="primary" type="submit">
+              Salva
+            </button>
+          </div>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+

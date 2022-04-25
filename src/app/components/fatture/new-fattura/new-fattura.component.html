@@ -1,0 +1,132 @@
+<mat-card class="card container">
+  <mat-card-title class="mb">Nuova Fattura</mat-card-title>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit(form)">
+      <mat-label>Data</mat-label>
+      <input
+        matInput
+        class="form-control"
+        type="date"
+        formControlName="data"
+        required
+      />
+      <div
+      *ngIf="
+        form.controls['data'].invalid &&
+        (form.controls['data'].dirty ||
+          form.controls['data'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <span *ngIf="form.controls['data'].errors"
+        >Campo Obbligatorio</span
+      >
+    </div>
+
+      <mat-label>Numero</mat-label>
+      <input
+        class="form-control"
+        matInput
+        type="number"
+        formControlName="numero"
+        required
+      />
+      <div
+      *ngIf="
+        form.controls['numero'].invalid &&
+        (form.controls['numero'].dirty ||
+          form.controls['numero'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <span *ngIf="form.controls['numero'].errors"
+        >Campo Obbligatorio</span
+      >
+    </div>
+
+      <mat-label>Anno</mat-label>
+      <input
+        class="form-control"
+        matInput
+        type="number"
+        formControlName="anno"
+        required
+      />
+      <div
+      *ngIf="
+        form.controls['anno'].invalid &&
+        (form.controls['anno'].dirty ||
+          form.controls['anno'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <span *ngIf="form.controls['anno'].errors"
+        >Campo Obbligatorio</span
+      >
+    </div>
+
+      <mat-label>Importo</mat-label>
+      <input
+        class="form-control"
+        matInput
+        type="number"
+        formControlName="importo"
+        required
+      />
+      <div
+      *ngIf="
+        form.controls['importo'].invalid &&
+        (form.controls['importo'].dirty ||
+          form.controls['importo'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <span *ngIf="form.controls['importo'].errors"
+        >Campo Obbligatorio</span
+      >
+    </div>
+
+      <mat-label>Stato</mat-label>
+      <select class="form-select" formControlName="stato" id="stato">
+        <option *ngFor="let x of statusFatture" [value]="x.id">
+          {{ x.nome }}
+        </option>
+      </select>
+      <div
+      *ngIf="
+        form.controls['stato'].invalid &&
+        (form.controls['stato'].dirty ||
+          form.controls['stato'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <span *ngIf="form.controls['stato'].errors"
+        >Campo Obbligatorio</span
+      >
+    </div>
+
+      <mat-card-actions>
+        <div class="center">
+          <button
+            mat-raised-button
+            color="accent"
+            type="button"
+            (click)="back()"
+          >
+            Indietro
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            [swal]="deleteSwal"
+            type="submit"
+          >
+            Salva
+          </button>
+          <swal icon="success" #deleteSwal title="Aggiunta Fattura"></swal>
+        </div>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

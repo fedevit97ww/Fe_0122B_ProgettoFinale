@@ -1,0 +1,75 @@
+<mat-card class="card container">
+  <mat-card-title class="mb">Nuova Provincia</mat-card-title>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit(form)">
+      <mat-label>Nome</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="nome"
+        required
+        oninput="this.value = this.value.toUpperCase()"
+        class="form-control"
+      />
+      <div
+      *ngIf="
+        form.controls['nome'].invalid &&
+        (form.controls['nome'].dirty ||
+          form.controls['nome'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <span *ngIf="form.controls['nome'].errors"
+        >Campo Obbligatorio</span
+      >
+    </div>
+
+      <mat-label>Sigla</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="sigla"
+        required
+        oninput="this.value = this.value.toUpperCase()"
+        class="form-control"
+      />
+      <div
+      *ngIf="
+        form.controls['sigla'].invalid &&
+        (form.controls['sigla'].dirty ||
+          form.controls['sigla'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <span *ngIf="form.controls['sigla'].errors"
+        >Campo Obbligatorio</span
+      >
+    </div>
+
+      <mat-card-actions>
+        <div class="center">
+          <button
+            mat-raised-button
+            color="accent"
+            type="button"
+            (click)="back()"
+          >
+            Indietro
+          </button>
+
+          <button
+            class="new"
+            mat-raised-button
+            color="primary"
+            [swal]="deleteSwal"
+            [disabled]="!form.valid"
+            type="submit"
+          >
+            Invia
+          </button>
+          <swal icon="success" #deleteSwal title="Aggiunta Provincia"></swal>
+        </div>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

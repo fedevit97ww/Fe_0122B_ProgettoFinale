@@ -1,0 +1,63 @@
+<mat-card class="card container">
+  <mat-card-title class="mb">Dettaglio Fattura {{ id }}</mat-card-title>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="form" >
+      <mat-label>Data</mat-label>
+      <input
+        class="form-control"
+        matInput
+        type="date"
+        formControlName="data"
+        readonly
+      />
+
+      <mat-label>Anno</mat-label>
+      <input
+        class="form-control"
+        matInput
+        type="number"
+        formControlName="anno"
+        readonly
+      />
+
+      <mat-label>Importo</mat-label>
+      <input
+        class="form-control"
+        matInput
+        type="text"
+        formControlName="importo"
+        readonly
+      />
+
+      <mat-label>Stato</mat-label>
+      <select class="form-select" formControlName="stato" id="stato">
+        <option *ngFor="let x of statusFatture" [value]="x.id">
+          {{ x.nome }}
+        </option>
+      </select>
+
+      <mat-card-actions>
+        <div class="center">
+          <button class="btn new2" type="button" (click)="back()">
+            Indietro
+          </button>
+
+          <button
+            class="btn btn-primary new"
+            [disabled]="!form.valid"
+            type="submit"
+            [swal]="deleteSwal"
+          >
+            Modifica
+          </button>
+          <swal
+          icon="question"
+          [showCancelButton]="true"
+          [focusCancel]="true"
+          (confirm)="onSubmit(form)"
+          #deleteSwal title="Modificare stato attuale della Fattura N° {{fattura.id }}?" ></swal>
+        </div>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

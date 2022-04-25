@@ -1,0 +1,72 @@
+<div class="container" *ngIf="clienti">
+  <button
+    mat-raised-button
+    class="new"
+    color="primary"
+    [routerLink]="'/new-customer'"
+  >
+    Nuovo Cliente
+  </button>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Ragione Sociale</th>
+        <th scope="col">Email</th>
+        <th scope="col">Partita Iva</th>
+      </tr>
+    </thead>
+    <tbody class="rows">
+      <tr *ngFor="let cliente of clienti; let i = index">
+        <td class="align-bottom">{{ cliente.id }}</td>
+        <td class="align-bottom">{{ cliente.ragioneSociale }}</td>
+        <td class="align-bottom">{{ cliente.email }}</td>
+        <td class="align-bottom">{{ cliente.partitaIva }}</td>
+        <td class="align-bottom">
+          <button
+            mat-raised-button
+            color="primary"
+            [routerLink]="['/fatture/cliente', cliente.id]"
+          >
+            Fatture
+          </button>
+        </td>
+        <td class="align-bottom">
+          <button
+            mat-raised-button
+            color="warning"
+            [routerLink]="['/modifica-cliente/', cliente.id]"
+          >
+            Modifica
+          </button>
+        </td>
+        <td class="align-bottom">
+          <button mat-raised-button color="error" [swal]="deleteSwal">
+            Elimina
+          </button>
+          <swal
+            icon="question"
+            [showCancelButton]="true"
+            [focusCancel]="true"
+            (confirm)="deleteCliente(cliente.id, i)"
+            #deleteSwal
+            title="Eliminare &nbsp;{{ cliente.ragioneSociale }}?"
+          ></swal>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <mat-paginator
+          [length]="items.totalElements"
+          [pageSize]="20"
+          showFirstLastButtons="true"
+          (page)="onPageChanged($event)"
+          aria-label="Select page"
+        >
+        </mat-paginator>
+      </tr>
+    </tfoot>
+  </table>
+</div>

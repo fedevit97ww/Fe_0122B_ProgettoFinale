@@ -1,0 +1,52 @@
+
+  <mat-card class="card container">
+    <mat-card-title class="mb">Modifica Comune </mat-card-title>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="form" >
+        <mat-label>Nome</mat-label>
+        <input class="form-control" matInput type="text" formControlName="nome" oninput="this.value = this.value.toUpperCase()" />
+
+        <div formGroupName="provincia">
+          <mat-label>Provincia</mat-label>
+          <select class="form-select" id="provincia" *ngIf="province" formControlName="id">
+            <option value=""></option>
+            <option *ngFor="let x of province" [value]="x.id">
+              {{ x.nome }}
+            </option>
+          </select>
+        </div>
+
+        <mat-card-actions>
+          <div class="center">
+            <button
+              mat-raised-button
+              color="accent"
+              type="button"
+              (click)="back()"
+            >
+              Indietro
+            </button>
+
+            <button
+              mat-raised-button
+              color="primary"
+              [disabled]="!form.valid"
+              type="submit"
+              [swal]="deleteSwal"
+            >
+              Modifica
+            </button>
+            <swal
+            icon="question"
+            [showCancelButton]="true"
+            [focusCancel]="true"
+            (confirm)="onSubmit(form)"
+            #deleteSwal
+            title="Modificare il comune?"
+          ></swal>
+          </div>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+

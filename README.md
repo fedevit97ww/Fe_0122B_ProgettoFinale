@@ -1,6 +1,17 @@
-# ProgProva
+# ProgettoFinale
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
+The project should be able to work with the command line npm i;
+
+In case of something doesn't works, use this info:
+In this project is used Bootstrap 5 (Run with command line 'npm i bootstrap')
+In this project is used Material ( Run with command line 'ng add @angular/material')
+Other important imports used :
+-( 'npm install --save @lottiefiles/lottie-player') used for the animations;
+-( 'npm install sweetalert2 @sweetalert2/ngx-sweetalert2') used for the alerts;
+
+
+
 
 ## Development server
 

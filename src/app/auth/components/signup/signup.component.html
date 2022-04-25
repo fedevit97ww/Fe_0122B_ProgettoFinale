@@ -1,0 +1,71 @@
+<div class="container">
+
+
+  <mat-card class="box">
+    <mat-card-header class="mb">Sign up</mat-card-header>
+    <mat-card-content>
+      <div class="lot">
+        <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_wd1udlcz.json"  background="transparent"  speed="1"  style="width: 350px; height: 350px;"  loop  autoplay></lottie-player>
+      </div>
+      <div class="form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+          <mat-label>Username</mat-label>
+          <input
+            class="form-control"
+            placeholder="Inserisci Username..."
+            type="text"
+            formControlName="username"
+            autocomplete="false"
+          />
+
+          <mat-label>Email</mat-label>
+          <input
+            class="form-control"
+            placeholder="Inserisci Email..."
+            type="text"
+            formControlName="email"
+            autocomplete="false"
+          />
+
+          <mat-label>Password</mat-label>
+          <input
+            class="form-control"
+            placeholder="Inserisci Password..."
+            type="password"
+            formControlName="password"
+          />
+
+          <mat-label>Ruolo</mat-label>
+          <select
+            class="form-select"
+            name="role"
+            id="role"
+            formControlName="role"
+          >
+            <option value="admin">Amministratore</option>
+            <option value="user">User</option>
+          </select>
+
+          <mat-card-actions>
+            <div class="center">
+              <button
+                mat-raised-button
+                color="primary"
+                [disabled]="!form.valid"
+                type="submit"
+              >
+                Sign up
+              </button>
+            </div>
+          </mat-card-actions>
+        </form>
+      </div>
+    </mat-card-content>
+    <mat-card-footer class="incolonna" *ngIf="!logged">
+      <p>
+        Sei già registrato? Effettua il
+        <span class="spanB" [routerLink]="['/login']">Login!</span>
+      </p>
+    </mat-card-footer>
+  </mat-card>
+</div>

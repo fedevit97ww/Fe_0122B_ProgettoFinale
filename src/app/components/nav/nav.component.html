@@ -1,0 +1,103 @@
+<mat-toolbar color="primary" *ngIf="showNav === true">
+  <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+  <span style="margin-left: 15px">CRM Aziendale</span>
+  <span style="margin-left: 15px">Benvenuto, {{nome.username}} </span>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav mode="push" #sidenav>
+    <mat-list>
+      <mat-list-item>
+        <button
+          (click)="sidenav.toggle()"
+          color="basic"
+          mat-raised-button
+          [routerLink]="['/']"
+        >
+          Home
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button
+          (click)="sidenav.toggle()"
+          color="primary"
+          mat-raised-button
+          [routerLink]="['/users']"
+        >
+          Utenti
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button
+          (click)="sidenav.toggle()"
+          color="primary"
+          mat-raised-button
+          [routerLink]="['/clienti']"
+        >
+          Clienti
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button
+          (click)="sidenav.toggle()"
+          color="primary"
+          mat-raised-button
+          [routerLink]="['/fatture']"
+        >
+          Fatture
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button
+          (click)="sidenav.toggle()"
+          color="primary"
+          mat-raised-button
+          [routerLink]="['/province']"
+        >
+          Province
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button
+          (click)="sidenav.toggle()"
+          color="primary"
+          mat-raised-button
+          [routerLink]="['/comuni']"
+        >
+          Comuni
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button
+          (click)="sidenav.toggle()"
+          color="primary"
+          mat-raised-button
+          [routerLink]="['/signup']"
+        >
+          Signup
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button
+          class="mb"
+          color="warn"
+          mat-flat-button
+          (click)="logout(); sidenav.toggle()"
+        >
+          Logout
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+    <app-loader *ngIf="showLoader"></app-loader>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,56 @@
+<div class="container" *ngIf="province">
+  <button
+    mat-raised-button
+    class="new"
+    color="primary"
+    [routerLink]="['/new-provincia']"
+  >
+    Nuova Provincia
+  </button>
+  <table class="table" >
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Sigla</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of province; let i = index">
+        <td class="align-bottom">{{ p.nome }}</td>
+        <td class="align-bottom">{{ p.sigla }}</td>
+        <td class="align-bottom">
+          <button
+          mat-raised-button
+          color="warning"
+            (click)="detailProvincia(p.id)"
+            [routerLink]="['/province/' + p.id]"
+          >
+            Modifica
+          </button>
+        </td>
+        <td class="align-bottom">
+          <button mat-raised-button color="error" [swal]="deleteSwal">
+            Elimina
+          </button>
+          <swal
+          icon="question"
+          [showCancelButton]="true"
+          [focusCancel]="true"
+          (confirm)="deleteProvincia(p.id, i)"
+          #deleteSwal title="Eliminare &nbsp;{{ p.nome }}?" ></swal>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <mat-paginator
+          [length]="items.totalElements"
+          [pageSize]="20"
+          (page)="onPageChanged($event)"
+          aria-label="Select page"
+        >
+        </mat-paginator>
+      </tr>
+    </tfoot>
+  </table>
+</div>

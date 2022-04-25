@@ -1,0 +1,48 @@
+
+<table class="table container box " *ngIf="fatture">
+  <thead>
+      <tr>
+          <th>id</th>
+          <th>Data</th>
+          <th>Numero</th>
+          <th>Anno</th>
+          <th>Importo</th>
+          <th>Stato</th>
+          <th>Rag.Sociale</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let fattura of fatture, let i = index">
+          <td class="align-bottom">{{ fattura.id }}</td>
+          <td class="align-bottom">{{ fattura.data.substr(0, 10) }}</td>
+          <td class="align-bottom">{{ fattura.numero }}</td>
+          <td class="align-bottom">{{ fattura.anno }}</td>
+          <td class="align-bottom">{{ fattura.importo }}</td>
+          <td class="align-bottom">{{ fattura.stato.nome }}</td>
+          <td class="align-bottom">{{ fattura.cliente.ragioneSociale }}</td>
+          <td><button mat-raised-button
+            color="warning" (click)="detailFattura(fattura.id)" [routerLink]="['/fatture/'+ fattura.id]" >Modifica</button></td>
+          <td><button mat-raised-button color="error" [swal]="deleteSwal" >Elimina</button></td>
+          <swal
+          icon="question"
+          [showCancelButton]="true"
+          [focusCancel]="true"
+          (confirm)="deleteFattura(fattura.id, i)"
+          #deleteSwal title="Eliminare &nbsp; Fattura N° {{fattura.id }}?" ></swal>
+      </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+
+      <mat-paginator
+                    [length]="items.totalElements"
+                    [pageSize]="20"
+                    showFirstLastButtons="true"
+                    (page)="onPageChanged($event)"
+                    aria-label="Select page">
+      </mat-paginator>
+
+    </tr>
+</tfoot>
+</table>
+

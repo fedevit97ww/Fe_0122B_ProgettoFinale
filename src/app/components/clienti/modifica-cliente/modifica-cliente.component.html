@@ -1,0 +1,259 @@
+<mat-card class="card container">
+  <mat-card-title class="mb">Modifica Cliente</mat-card-title>
+  <mat-card-content>
+    <form
+      class="example-form form-group"
+      [formGroup]="form"
+
+    >
+      <mat-label>Ragione Sociale</mat-label>
+      <input
+        formControlName="ragioneSociale"
+        type="text"
+        id="ragioneSociale"
+        autocomplete="false"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          form.controls['ragioneSociale'].invalid &&
+          (form.controls['ragioneSociale'].dirty ||
+            form.controls['ragioneSociale'].touched)
+        "
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls['ragioneSociale'].errors"
+          >Campo Obbligatorio</span
+        >
+      </div>
+
+      <mat-label>Partita IVA</mat-label>
+      <input
+        formControlName="partitaIva"
+        type="text"
+        id="partitaIva"
+        autocomplete="false"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          form.controls['partitaIva'].invalid &&
+          (form.controls['partitaIva'].dirty ||
+            form.controls['partitaIva'].touched)
+        "
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls['partitaIva'].errors"
+          >Campo Obbligatorio</span
+        >
+      </div>
+
+      <mat-label>Email</mat-label>
+      <input
+        formControlName="email"
+        type="email"
+        id="email"
+        autocomplete="false"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          form.controls['email'].invalid &&
+          (form.controls['email'].dirty || form.controls['email'].touched)
+        "
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls['email'].errors">Campo Obbligatorio</span>
+      </div>
+
+      <mat-label>Tipo Cliente</mat-label>
+      <select
+        class="form-control"
+        formControlName="tipoCliente"
+        id="tipoCliente"
+        *ngIf="tipiclienti"
+        lass="form-select"
+      >
+        <option value=""></option>
+        <option *ngFor="let tc of tipiclienti" value="{{ tc }}">
+          {{ tc }}
+        </option>
+      </select>
+      <div
+        *ngIf="
+          form.controls['tipoCliente'].invalid &&
+          (form.controls['tipoCliente'].dirty ||
+            form.controls['tipoCliente'].touched)
+        "
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls['tipoCliente'].errors"
+          >Campo Obbligatorio</span
+        >
+      </div>
+
+      <mat-label>PEC</mat-label>
+      <input
+        formControlName="pec"
+        type="email"
+        id="pec"
+        autocomplete="false"
+        class="form-control"
+      />
+
+      <mat-label>Telefono</mat-label>
+      <input
+        formControlName="telefono"
+        type="tel"
+        id="telefono"
+        autocomplete="false"
+        class="form-control"
+      />
+
+      <mat-label>Nome Contatto</mat-label>
+      <input
+        formControlName="nomeContatto"
+        type="text"
+        id="nomeContatto"
+        autocomplete="false"
+        class="form-control"
+      />
+
+      <mat-label>Cognome Contatto</mat-label>
+      <input
+        formControlName="cognomeContatto"
+        type="text"
+        id="cognomeContatto"
+        autocomplete="false"
+        class="form-control"
+      />
+
+      <mat-label>Telefono Contatto</mat-label>
+      <input
+        formControlName="telefonoContatto"
+        type="tel"
+        id="telefonoContatto"
+        autocomplete="false"
+        class="form-control"
+      />
+
+      <mat-label>Email Contatto</mat-label>
+      <input
+        formControlName="emailContatto"
+        type="email"
+        id="emailContatto"
+        autocomplete="false"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          form.controls['emailContatto'].invalid &&
+          (form.controls['emailContatto'].dirty ||
+            form.controls['emailContatto'].touched)
+        "
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls['emailContatto'].errors"
+          >Campo Obbligatorio</span
+        >
+      </div>
+
+      <div formGroupName="indirizzoSedeOperativa">
+        <mat-label>Via</mat-label>
+        <input
+          formControlName="via"
+          type="text"
+          id="via"
+          autocomplete="false"
+          class="form-control"
+        />
+
+        <mat-label>Civico</mat-label>
+        <input
+          formControlName="civico"
+          type="text"
+          id="civico"
+          autocomplete="false"
+          class="form-control"
+        />
+
+        <mat-label>Cap</mat-label>
+        <input
+          formControlName="cap"
+          type="text"
+          id="cap"
+          autocomplete="false"
+          class="form-control"
+        />
+
+        <mat-label>Localita</mat-label>
+        <input
+          formControlName="localita"
+          type="text"
+          id="localita"
+          autocomplete="false"
+          class="form-control"
+        />
+
+        <div formGroupName="comune">
+          <mat-label>Comune</mat-label>
+          <select
+            id="id"
+            *ngIf="comuni"
+            formControlName="id"
+            class="form-select"
+          >
+            <option value=""></option>
+            <option *ngFor="let x of comuni" [value]="x.id">
+              {{ x.nome }}
+            </option>
+          </select>
+          <div formGroupName="provincia">
+            <mat-label>Provincia</mat-label>
+            <select
+              id="provincia"
+              *ngIf="province"
+              formControlName="id"
+              class="form-select"
+            >
+              <option value=""></option>
+              <option *ngFor="let x of province" [value]="x.id">
+                {{ x.nome }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <mat-card-actions>
+        <div class="center">
+          <button
+
+            mat-raised-button
+            color="accent"
+            type="button"
+            (click)="back()"
+          >
+            Indietro
+          </button>
+
+          <button
+
+            mat-raised-button
+            color="primary"
+            [disabled]="!form.valid"
+            type="submit"
+            [swal]="deleteSwal"
+          >
+            Invia
+          </button>
+          <swal
+          icon="question"
+          [showCancelButton]="true"
+          [focusCancel]="true"
+          (confirm)="onSubmit(form)"
+          #deleteSwal title="Confermi le modifiche al cliente ?" ></swal>
+        </div>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>
