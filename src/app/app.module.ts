@@ -37,6 +37,7 @@ import { ComuniComponent } from './components/comuni/comuni.component';
 import { NewComuneComponent } from './components/comuni/new-comune/new-comune.component';
 import { ModComuneComponent } from './components/comuni/mod-comune/mod-comune.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     MatFormFieldModule,
     FattureModule,
     MatCardModule,
-    [SweetAlert2Module.forRoot()]
+    [SweetAlert2Module.forRoot()],
+    MatSnackBarModule,
   ],
   providers: [
     {
