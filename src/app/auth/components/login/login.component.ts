@@ -33,8 +33,10 @@ export class LoginComponent implements OnInit {
     this.authSrv.login(DatiForm.value).subscribe((risposta) => {
       this.user = risposta;
       localStorage.setItem('user', JSON.stringify(this.user));
-      this.router.navigate(['/']);
       Swal.fire('Login effettuato con successo')
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 1200);
     });
   }
 }
