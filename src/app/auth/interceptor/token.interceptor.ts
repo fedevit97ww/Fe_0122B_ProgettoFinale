@@ -41,20 +41,19 @@ export class TokenInterceptor implements HttpInterceptor {
         console.log(error);
 
         if (error.error.error == 'Unauthorized') {
-          Swal.fire(
-            'Accesso non autorizzato, Username e password non combaciano'
-          );
+          Swal.fire({title:'Accesso negato, Username e password non combaciano', icon:'error'});
+          
         } else if (error.error.message == 'Error: Username is already taken!') {
-          Swal.fire('Username già in uso');
+          Swal.fire({title:'Username già in uso', icon:'error'});
 
         } else if (error.error.error == 'Bad Request') {
-          Swal.fire('La password deve contenere almeno sei caratteri');
+          Swal.fire({title:'La password deve essere almeno di sei caratteri', icon:'error'});
 
         } else if (error.error.message == 'Error: Email is already in use!') {
-          Swal.fire('Email già in uso');
+         Swal.fire({title:'Email già in uso', icon:'error'});
           
         } else if (error.error.error == "Internal Server Error") {
-          Swal.fire('Azione non possibile');
+          Swal.fire({title:'Azione non possibile', icon:'error'});
         }
 
         return throwError(() => (this.x = new Error(error.name)));
