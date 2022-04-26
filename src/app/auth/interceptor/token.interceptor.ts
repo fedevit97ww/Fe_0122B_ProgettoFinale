@@ -9,6 +9,7 @@ import {
 } from '@angular/common/http';
 import { catchError, finalize, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -16,7 +17,7 @@ export class TokenInterceptor implements HttpInterceptor {
   tenant: string;
   x:any;
 
-  constructor() {
+  constructor(private snackBar: MatSnackBar) {
     this.token = environment.adminToken;
     this.tenant = environment.adminTenant;
   }
@@ -36,6 +37,9 @@ export class TokenInterceptor implements HttpInterceptor {
         ok = evento instanceof HttpResponse ? 'successo' : '';
       }),
       catchError((error: HttpErrorResponse) => {
+        this.snackBar.open(error.error.error, 'Chiudi', {
+          duration:2000
+        })
         return throwError(() =>
 		this.x = new Error(error.name))
       }),
