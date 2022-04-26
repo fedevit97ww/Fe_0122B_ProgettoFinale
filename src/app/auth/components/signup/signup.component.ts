@@ -48,7 +48,7 @@ export class SignupComponent implements OnInit {
     this.form.controls['username'].setValue('');
     this.form.controls['email'].setValue('');
     this.form.controls['password'].setValue('');
-    Swal.fire('Utente registrato con successo')
+    Swal.fire({title:'Utente registrato con successo', icon:'success'})
     })
   }
   log(){
