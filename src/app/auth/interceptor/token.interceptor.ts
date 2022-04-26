@@ -9,15 +9,16 @@ import {
 } from '@angular/common/http';
 import { catchError, finalize, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MatSnackBar } from '@angular/material/snack-bar';
+
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   token: string;
   tenant: string;
-  x:any;
+  x: any;
 
-  constructor(private snackBar: MatSnackBar) {
+  constructor() {
     this.token = environment.adminToken;
     this.tenant = environment.adminTenant;
   }
@@ -37,13 +38,26 @@ export class TokenInterceptor implements HttpInterceptor {
         ok = evento instanceof HttpResponse ? 'successo' : '';
       }),
       catchError((error: HttpErrorResponse) => {
-        this.snackBar.open(error.error.error, 'Chiudi', {
-          duration:2000
-        })
-        return throwError(() =>
-		this.x = new Error(error.name))
+        console.log(error);
+
+        if (error.error.error == 'Unauthorized') {
+          Swal.fire(
+            'Accesso non autorizzato, Username e password non combaciano'
+          );
+        } else if (error.error.message == 'Error: Username is already taken!') {
+          Swal.fire('Username già in uso');
+
+        } else if (error.error.error == 'Bad Request') {
+          Swal.fire('La password deve contenere almeno sei caratteri');
+
+        } else if (error.error.message == 'Error: Email is already in use!') {
+          Swal.fire('Email già in uso');
+        }
+
+        return throwError(() => (this.x = new Error(error.name)));
       }),
       finalize(() => {})
     );
   }
 }
+
