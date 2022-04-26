@@ -52,6 +52,9 @@ export class TokenInterceptor implements HttpInterceptor {
 
         } else if (error.error.message == 'Error: Email is already in use!') {
           Swal.fire('Email già in uso');
+          
+        } else if (error.error.error == "Internal Server Error") {
+          Swal.fire('Azione non possibile');
         }
 
         return throwError(() => (this.x = new Error(error.name)));
