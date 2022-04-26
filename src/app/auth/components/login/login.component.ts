@@ -4,7 +4,7 @@ import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { User } from 'src/app/models/user';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
       this.user = risposta;
       localStorage.setItem('user', JSON.stringify(this.user));
       this.router.navigate(['/']);
+      Swal.fire('Login effettuato con successo')
     });
   }
 }
