@@ -60,9 +60,10 @@
               Indietro
             </button>
 
-            <button mat-raised-button color="primary" type="submit">
+            <button mat-raised-button color="primary" type="submit"  [swal]="deleteSwal">
               Salva
             </button>
+            <swal icon="success" #deleteSwal title="Aggiunto Comune"></swal>
           </div>
         </mat-card-actions>
       </form>
