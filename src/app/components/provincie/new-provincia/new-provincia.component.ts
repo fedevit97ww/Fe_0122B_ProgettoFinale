@@ -33,7 +33,7 @@ export class NewProvinciaComponent implements OnInit {
     this.provincia.nome = DatiForm.value.nome
     this.provincia.sigla = DatiForm.value.sigla
     this.provinceSrv.newProvincia(this.provincia).subscribe()
-    alert('Provincia Aggiunta')
+    
     this.form.reset()
   }
 }
