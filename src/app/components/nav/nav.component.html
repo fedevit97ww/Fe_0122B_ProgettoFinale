@@ -84,14 +84,17 @@
       </mat-list-item>
 
       <mat-list-item>
-        <button
+         <button
           class="mb"
           color="warn"
           mat-flat-button
-          (click)="logout(); sidenav.toggle()"
+          [swal]="deleteSwal"
+          (confirm)="logout()"
+          (click)="sidenav.toggle()"
         >
           Logout
         </button>
+        <swal icon="success" #deleteSwal title="Effettuare il Logout?"></swal>
       </mat-list-item>
     </mat-list>
   </mat-sidenav>
