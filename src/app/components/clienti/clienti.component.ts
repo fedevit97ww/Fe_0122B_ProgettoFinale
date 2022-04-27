@@ -34,7 +34,7 @@ export class ClientiComponent implements OnInit {
   deleteCliente(id:number, i:number){
     this.clientSrv.delete(id).subscribe(()=>{
       this.clienti.splice(i, 1);
-      Swal.fire('Cliente eliminato')
+       Swal.fire({title:'Cliente eliminato',icon:'success'})
     })
 
   }
