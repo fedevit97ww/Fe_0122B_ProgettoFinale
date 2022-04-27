@@ -36,7 +36,7 @@ export class FattureComponent implements OnInit {
   }
   deleteFattura(id:number, i:number){
     this.fattureSrv.delete(id).subscribe(()=>{
-      Swal.fire('Fattura Eliminata')
+      Swal.fire({title:'Fattura Eliminata', icon:'success'})
       this.fatture.splice(i, 1);
     })
   }
