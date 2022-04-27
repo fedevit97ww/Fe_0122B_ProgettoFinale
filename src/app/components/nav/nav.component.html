@@ -94,7 +94,12 @@
         >
           Logout
         </button>
-        <swal icon="warning" #deleteSwal title="Effettuare il Logout?"></swal>
+        <swal
+          icon="warning"
+          [showCancelButton]="true"
+          #deleteSwal
+          title="Effettuare il Logout?"
+        ></swal>
       </mat-list-item>
     </mat-list>
   </mat-sidenav>
