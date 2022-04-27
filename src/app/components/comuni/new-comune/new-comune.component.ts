@@ -41,7 +41,7 @@ export class NewComuneComponent implements OnInit {
     this.comuni.provincia = DatiForm.value.provincia
     console.log(DatiForm.value)
     this.comuniSrv.saveComune(this.comuni).subscribe()
-    alert('Comune Aggiunto')
+    
     this.form.reset()
   }
 
